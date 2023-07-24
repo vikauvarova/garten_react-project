@@ -1,0 +1,37 @@
+.basket-container {
+    margin-top: 180px;
+    z-index: -1;
+    .back-link{
+        display: flex;
+        justify-content: flex-end;
+        width: 60%;
+        margin-bottom: 24px;
+        gap: 17px;
+        @include medium-screen {
+            width: 100%;
+        }
+    }
+    .details-container{
+        display: flex;
+
+        justify-content: space-between;
+        @include medium-screen {
+            flex-direction: column;
+            gap: 52px;
+        }
+        .products-wrapper {
+            border-top: 1px solid $primary-gray;
+            gap: 20px;
+            display: grid;
+        }
+    }
+    .empty-container {
+        border: 1px solid $primary-gray;
+        width: 60%;
+        height: 100px;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+    }
+
+}

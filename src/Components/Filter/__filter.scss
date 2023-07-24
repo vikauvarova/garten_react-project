@@ -1,0 +1,82 @@
+.filter-container {
+    display: flex;
+    gap: 40px;
+    margin-top: 81px;
+    margin-bottom: 34px;
+    @include medium-screen {
+        gap: 25px;       
+    }
+    @include medium-screen {
+        margin-top: 10px;
+    }
+    @include x-small {
+        grid-template-columns: 1fr;
+    }
+
+    .input-wrapper {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        @include medium-screen {
+         gap: 0;   
+        }
+        p {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        input, select {
+            border-radius: 7px;
+            border: 1px solid #000;
+            margin-left: 20px;
+            padding: 10px;
+        }
+        .price {
+            input {
+                width: 103px;
+                height: 42px;
+                @include medium-screen {
+                    width: 75px;
+                } 
+            }
+        }
+        .discount {
+            input  {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+    }
+    .hide-block{
+        display: none;
+    }
+}
+
+.filter__toogle-btn{
+    display: none;
+    @include medium-screen {
+        display: flex;
+        background: transparent;
+        cursor: pointer;
+        gap: 20px;
+        align-items: center;
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 30px;
+    }
+    img {
+        width: 20px;
+    }
+}
+
+@include medium-screen {
+    .show__filt {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .hide__filt {
+        display: none;
+    }
+}
+

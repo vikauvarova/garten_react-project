@@ -1,0 +1,53 @@
+.order-details__container {
+    max-width: 496px;
+    width: 38%;
+    height: 393px;
+    border-radius: 21px;
+    border: 2px solid $primary-black;
+    padding: 25px;
+    display: grid;
+    align-items: flex-start;
+    @include medium-screen{
+        width: 80%;
+    }
+    @include x-small {
+        width: 100%;
+    }
+    h3 {
+        font-size: 28px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 130%;
+        letter-spacing: 0.84px;
+    }
+    .price-wrapper {
+        display: flex;
+        justify-content: space-between;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 130%;
+        letter-spacing: 0.72px;
+    }
+    .form__make-an-order {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 25px;
+        input {
+            border-radius: 20px;
+            border: 1px solid $primary-black;
+            padding: 5%;
+        }
+        button {
+            padding: 5% 20% 5% 18%;
+            border-radius: 17px;
+            background: $primary-green;
+            color: $primary-white;
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 0.84px;
+        }
+    }
+}

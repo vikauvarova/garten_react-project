@@ -1,0 +1,59 @@
+.main__sale-block {
+    height: 100%;
+    padding-top: 49px;
+    position: relative;
+    .sale__sale-products {
+        padding-top: 23px;
+        padding-bottom: 44px;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        .sale-product {
+            width: 300px;
+            img {
+                width: 319px;
+                height: 276px;
+                margin-bottom: 20px; 
+                border-radius: 3px;       
+            }
+            .sale__price-wrapper {
+                display: flex;
+                align-items: center;
+                gap: 44px;
+ 
+                .sale__discont-price {
+                    font-size: 30px;
+                    font-weight: 600;
+                    line-height: 130%;
+                    letter-spacing: 0.9px;
+                }
+                .sale__price {
+                    color: $primary-gray;
+                    font-size: 20px;
+                    font-weight: 500;
+                    line-height: 130%;
+                    letter-spacing: 0.6px;
+                    text-decoration-line: line-through;
+                }
+                .sale__sale-procent {
+                    color: $primary-pink;
+                    font-size: 20px;
+                    font-weight: 600;
+                    line-height: 130%;
+                    letter-spacing: 0.6px;
+                }
+            }
+            .sale__name {
+                color: #3A3A3A;
+                font-size: 16px;
+                line-height: 130%;
+                letter-spacing: 0.48px;
+            }
+        }
+    }
+    .main__pop-up {
+        top: 40%;
+        left: 50%;
+        transform:translate(-50%, -50%);
+    }
+}

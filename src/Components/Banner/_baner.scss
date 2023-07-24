@@ -1,0 +1,60 @@
+.main__header{
+    margin-top: 10rem;
+    background-color: $baner-blue;
+    .main__header-container{
+        width: 100%;
+        height: 600px;
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        padding: 0 20px;
+        @include small-screen {
+            grid-template-columns: 1fr;
+            height: 500px;
+        }
+        .main__header-left{
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            .main__header-h {
+                h1{
+                    font-size: 80px;
+                    color: $primary-white;
+                    margin: 0;
+                }
+                h2{
+                    font-size: 63px;
+                    color: $primary-white;
+                }
+            }
+
+            .btn__sale {
+                font-weight: 700;
+                font-size: 25px;
+                border-radius: 13px;
+                background-color: $primary-white;
+                width: 155px;
+                height: 82px;
+                display: grid;
+                align-items: center;
+                text-align: center;
+            }
+        }
+        .main__header-right {
+            position: relative;
+            img {
+                position: absolute;
+                bottom: 0;
+                @include big-screen {
+                    right: -3%;
+                }
+                @include medium-screen {
+                    right: -10%;  
+                }
+                @include small-screen {
+                    display: none;
+                }
+            }
+        }
+    }
+}

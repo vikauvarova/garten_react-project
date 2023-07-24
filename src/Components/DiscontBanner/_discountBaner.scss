@@ -1,0 +1,123 @@
+.main__discount {
+    position: relative;
+    background: $green-gradient;
+    width: 100vw;
+    height: 100wh;
+    display: grid;
+    place-items: center;
+    .main__discount-container{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        min-height: 476px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 5rem;
+        @include x-small {
+            grid-template-columns: 1fr; 
+            text-align: center;
+        }
+        .main__discount-left {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+               max-width: 422px;
+            }
+            @include x-small {
+                display: none;
+            }
+        }
+        .main__discount-right {
+            margin-top: 3rem;
+            line-height: 120%;
+            font-family: "Montserrat";
+            h3 {
+                color: $primary-white;
+                font-size: 90px;
+                line-height: 120%;
+                font-family: "Montserrat";
+                @include medium-screen {
+                    font-size: 70px;
+                }
+            }
+            p {
+                margin-bottom: 5rem;
+                color: $primary-white;
+                font-size: 50px;
+                line-height: 120%;
+                font-weight: 700;
+                @include medium-screen {
+                    font-size: 35px;
+                }
+                @include small-screen {
+                    font-size: 25px;
+                }
+            }
+            .discount__form {
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+                margin-bottom: 45px;
+                input {
+                    width: 473px;
+                    height: 75px;
+                    border-radius: 25px;
+                    padding-left: 50px;
+                    font-size: 18px;
+                    font-weight: 600;
+                    color: $primary-gray;
+                    @include medium-screen {
+                        width: 100%;
+                        height: 65px;
+                    }
+                }
+                .discount__btn {
+                    width: 473px;
+                    height: 75px;
+                    border-radius: 25px;
+                    font-size: 29px;
+                    font-weight: 700;
+                    color: $primary-white;
+                    background-color: transparent;
+                    border: 2px solid $primary-white;
+                    @include medium-screen {
+                        width: 100%;
+                        height: 65px;
+                        font-size: 23px;
+                    }
+                }
+            }
+        }
+    }
+    .discount__pop-up {
+        position: absolute;
+        display: grid;
+        width: 400px;
+        height: 300px;
+        border-radius: 10px;
+        background-color: $primary-white;
+        font-size: 22px;
+        align-items: center;
+        text-align: center;
+        line-height: 130%;
+        box-shadow: 0px 0px 20px 2px $primary-gray;
+            -webkit-box-shadow: 0px 0px 20px 2px $primary-gray;
+            -moz-box-shadow: 0px 0px 20px 2px $primary-gray;
+        
+        .close_btn{
+            width: 200px;
+            height: 75px;
+            border-radius: 25px;
+            font-size: 29px;
+            font-weight: 700;
+            color: $primary-white;
+            background-color: $primary-green;
+            margin: 0 auto;
+        }
+    }
+
+    .hide_pop-up {
+        display: none;
+    }
+}
+

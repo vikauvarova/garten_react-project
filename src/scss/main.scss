@@ -1,0 +1,28 @@
+@import "./variables";
+@import "./base";
+@import "./mixins";
+@import "./categories-base";
+@import "./pop-ups";
+
+//components
+@import "../Components/NavBar/nav";
+@import "../Components/Contact/contacts";
+@import "../Components/Banner/baner";
+@import "../Components/Category/catalogBlock";
+@import "../Components/DiscontBanner/discountBaner";
+@import "../Components/Sales/saleBlock";
+@import "../Components/Producs/productsInCategory";
+@import "../Components/Filter/_filter";
+@import "../Components/Basket/_productInBasket";
+@import "../Components/Basket/orderDetails";
+@import "../Components/Counter/_counter";
+@import "../Components/Breadcrumbs/breadcrumbs";
+
+
+//pages
+
+@import "./singleProduct";
+@import "./basket";
+
+
+

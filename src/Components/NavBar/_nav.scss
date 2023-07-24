@@ -1,0 +1,128 @@
+nav {
+    height: 72px;
+    width: 100vw;
+    display: grid;
+    place-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    background-color: $primary-white;
+    padding-bottom: 79px;
+    padding-top: 19px;
+    .nav__container {
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .logo__block {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            .logo {
+                    width: 72px;
+                    height: 72px;
+                }
+
+                .btn__catalog {
+                    height: 50px;
+                    width: 125px;
+                    background-color: $primary-green;
+                    border-radius: 5px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    a {
+                        color: $primary-white;
+                        font-weight: 700;
+                        font-size: 16px;
+                        line-height: 20px;
+                    }
+                    @include medium-screen {
+                        display: none;
+                    }
+                }
+        }
+        
+        .nav__links {
+            display: flex;
+            gap: 3rem;
+            margin-left: 30%;
+            @include medium-screen {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                flex-direction: column;
+                gap: 0;
+                li {
+                    height: 4rem;
+                    width: 100%;
+                    box-shadow: -5px 5px 30px $primary-gray;
+                }
+            }
+            a {
+                font-weight: 500;
+                font-size: 16px;
+                color: $primary-black;
+                &:hover {
+                    color: $primary-green;
+                }
+                @include medium-screen {
+                    height: 100%;
+                    width: 100%;
+                    background-color: $primary-white;
+                    border-radius: 3px;
+
+                    display: flex;
+                    align-items: center;
+                    padding: 1rem 5rem 1rem 3rem;
+                }
+            }
+            .active-nav {
+                color: $primary-green;
+                text-decoration: underline;
+            }
+        }
+        .nav__toogle-btn {
+            display: none;
+            @include medium-screen {
+                display: inline-block;
+                background: transparent;
+                cursor: pointer;
+            }
+        }
+        @include medium-screen {
+            .show__nav {
+                    display: flex;
+                }
+            
+                .hide__nav {
+                    display: none;
+                }
+        }
+        .btn__basket {
+            position: relative;
+            .round {
+                position: absolute;
+                bottom: -5px;
+                right: -5px;
+                background: $primary-green;
+                border-radius: 10px;
+                width: 18px;
+                height: 18px;
+                text-align: center;
+                color: $primary-white;
+                display: none;
+                font-size: 12px;
+            }
+            .show_count{
+                display: block;
+            }
+        }
+    }
+
+}
+
+
+
