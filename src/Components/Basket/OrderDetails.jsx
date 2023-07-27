@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import axios from "axios"
+
 import { useForm } from 'react-hook-form';
 import {useDispatch, useSelector} from "react-redux";
-import { sendOrder } from '../../Actions/orderAction';
+
 import { clearBasket } from '../../Actions/basketAction';
 import {orderSuccess} from "../../Actions/popUpsAction";
 
@@ -9,10 +11,10 @@ function OrderDetails() {
     const [sum, setSum] = useState(0);
   
     const basket = useSelector(state => state.basket.basket);
-    const status = useSelector(state => state.order.status);
-
     const dispatch = useDispatch();
 
+
+  // calculate total price
     useEffect(() => {
       const count = basket.reduce((acc, product) => {
         if(product.discont_price) {
@@ -25,6 +27,7 @@ function OrderDetails() {
       setSum(count);
     }, [basket]) 
 
+    // validate and requered form
     const {
       register,
       handleSubmit,
@@ -32,28 +35,33 @@ function OrderDetails() {
       reset,
     } = useForm();
 
-    const handleSendOrder = (data) => {
+    // send data
+  const sendOrder = async (order) => {
+    try {
+      const response = await axios.post("http://localhost:3333/order/send", order);
+      if(response.status === 200) {
+        dispatch(orderSuccess());
+      }
+      return response.data;
+    }
+    catch (err) {
+      alert(err.message)
+    }
+  };
+  
+
+    const handleSendOrder = async (data) => {
       const newOrder = {
         id: Date.now(),
         phone: data.phone,
         order: basket
       }
-      dispatch(sendOrder(newOrder))
+      sendOrder(newOrder)
       localStorage.clear();
       reset();
       dispatch(clearBasket());
     }
     
-    useEffect(() => {
-      if(status === 200) {
-        orderSuccess()
-        
-      }
-
-    }, [status])
-
-
-
 
   return (
     <div className="order-details__container">
