@@ -8,29 +8,24 @@ function Filter({pathname}) {
 
     const dispatch = useDispatch();
 
-    const sortType = useSelector((state) => state.filter.sortType);
-
+    // cheched
     const handleShowDiscount = (e) => {
         dispatch(filterDiscount(e.target.checked));
     }
 
-    const handleSortType = (e) => {
-            dispatch(filterSortType(e.target.value))
-            
-    }
+    // get the sort state from the reducer
+    const sortType = useSelector((state) => state.filter.sortType);
 
+    // states to show filtering in the mobile version
     const [isFiltShowing, setFiltShowing] = useState(false);
 
   return (
     <>
     <div className="filter__toogle-btn" onClick={() => setFiltShowing(!isFiltShowing)}>
             Filter
-            {isFiltShowing ? <img src={arrowUp} alt=""/> : <img src={arrowDown} alt="" />}
-        
-        
+            {isFiltShowing ? <img src={arrowUp} alt=""/> : <img src={arrowDown} alt="" />}    
     </div>
     <div className={`filter-container ${isFiltShowing ? "show__filt" : "hide__filt"}`}>
-
         <div className="input-wrapper price-wrapper">
             <p>Price</p>
             <form className="price" onSubmit={(e) => e.preventDefault()}>
@@ -48,16 +43,14 @@ function Filter({pathname}) {
         </div>
         <div className="input-wrapper sorted-wrapper">
             <p>Sorted</p>
-            <select value={sortType} onChange={handleSortType}>
-                <option value="">by default</option>
+            <select value={sortType} onChange={(e) => dispatch(filterSortType(e.target.value))}>
+                <option value="default">by default</option>
                 <option value="asc">Lowest price</option>
                 <option value="desc">Highest price</option>
             </select>
         </div>
-
     </div>
-
-        </>
+    </>
   )
 }
 
