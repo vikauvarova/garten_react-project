@@ -8,20 +8,24 @@ import PopUpSuccessAdd from "../Components/PopUps/PopUpSuccessAdd";
 function AllProducts() {
 
   const dispatch = useDispatch();
-
-  const allProducts = useSelector((state) => state.products.products);
-  const priceFrom = useSelector((state) => state.filter.filterPriceFrom);
-  const priceTo = useSelector((state) => state.filter.filterPriceTo);
-  const isShow = useSelector((state) => state.filter.showDiscount);
-  const sortType = useSelector((state) => state.filter.sortType);
+ 
+  // get all products form reducer
+  let allProducts = useSelector((state) => state.products.products);
   
-  const [newProducts, setNewProducts] = useState(allProducts);
 
   useEffect(() => {
     dispatch(getProducts());  
   }, [])
 
+  // get filter's states
+  const priceFrom = useSelector((state) => state.filter.filterPriceFrom);
+  const priceTo = useSelector((state) => state.filter.filterPriceTo);
+  const isShow = useSelector((state) => state.filter.showDiscount);
+  const sortType = useSelector((state) => state.filter.sortType);
+  
+  const [filteredProducts, setFilteredProducts] = useState(allProducts);
 
+  //filtered
   useEffect(() => {
     let filtered = allProducts;
 
@@ -36,25 +40,62 @@ function AllProducts() {
     if(isShow) {
        filtered = filtered.filter((product) => product.discont_price !== null);
     }
-    
-    if(sortType === "asc"){
-        filtered = filtered.sort((a, b) => a.price - b.price);
-    } else if (sortType === "desc"){
-        filtered = filtered.sort((a, b) => b.price - a.price);
-    } 
 
 
-    setNewProducts(filtered);
+    setFilteredProducts(filtered);
 
   }, [priceFrom, priceTo, isShow, sortType])
 
+  // sorted by sortType
+  useEffect(() => {
+    if(filteredProducts.length > 0 ){
+      let sortFilteredProducts = [...filteredProducts];
+      if (sortType === "asc") {
+        sortFilteredProducts.sort((a, b) => {
+          const priceA = a.discont_price || a.price;
+          const priceB = b.discont_price || b.price;
+          return priceA - priceB;
+        });
+
+      } else if (sortType === "desc") {
+        sortFilteredProducts.sort((a, b) => {
+          const priceA = a.discont_price || a.price;
+          const priceB = b.discont_price || b.price;
+          return priceB - priceA;
+        });
+
+      }
+      setFilteredProducts(sortFilteredProducts);
+    } else {
+      let sortFilteredProducts = [...allProducts];
+      if (sortType === "asc") {
+        sortFilteredProducts.sort((a, b) => {
+          const priceA = a.discont_price || a.price;
+          const priceB = b.discont_price || b.price;
+          return priceA - priceB;
+        });
+      } else if (sortType === "desc") {
+        sortFilteredProducts.sort((a, b) => {
+          const priceA = a.discont_price || a.price;
+          const priceB = b.discont_price || b.price;
+          return priceB - priceA;
+        });
+      }
+  
+      setFilteredProducts(sortFilteredProducts);
+    }
+  }, [sortType]);
 
   return (
     <div className="container category-container">
       <h1>All products</h1>
-      <Filter />
+      <Filter/>
       <div className="category__products-container">
-        { newProducts.map(product => (
+        { filteredProducts.length > 0 ? 
+            filteredProducts.map(product => (
+            <ProductItem key={product.id} product={product}/>
+          )) :
+          allProducts.map(product => (
             <ProductItem key={product.id} product={product}/>
           )) 
         }

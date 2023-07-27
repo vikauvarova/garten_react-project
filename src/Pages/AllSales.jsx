@@ -12,16 +12,18 @@ function ProductsWithSale() {
     const pathname = location.pathname
 
     const products = useSelector(state => state.products.products);
-    const priceFrom = useSelector((state) => state.filter.filterPriceFrom);
-    const priceTo = useSelector((state) => state.filter.filterPriceTo);
-    const isShow = useSelector((state) => state.filter.showDiscount);
-    const sortType = useSelector((state) => state.filter.sortType);
-
-    const [newProducts, setNewProducts] = useState(products);
 
     useEffect(() => {
       dispatch(getProducts())
     }, []);
+
+
+    const priceFrom = useSelector((state) => state.filter.filterPriceFrom);
+    const priceTo = useSelector((state) => state.filter.filterPriceTo);
+    const sortType = useSelector((state) => state.filter.sortType);
+
+    const [filteredProducts, setFilteredProducts] = useState(products);
+
 
     useEffect(() => {
       let filtered = products;
@@ -33,23 +35,58 @@ function ProductsWithSale() {
       if(priceTo){
           filtered = filtered.filter((product) => product.price <= Number(priceTo));
       }
-  
-      if(isShow) {
-         filtered = filtered.filter((product) => product.discont_price !== null);
-      }
-      if(sortType === "desc"){
-          filtered = filtered.sort((a, b) => a.price - b.price);
-      } else if (sortType === "asc"){
-          filtered = filtered.sort((a, b) => b.price - a.price);
-      }
-  
-      setNewProducts(filtered);
-  
-    }, [newProducts, priceFrom, priceTo, isShow, sortType])
-  
 
+      setFilteredProducts(filtered);
+  
+    }, [priceFrom, priceTo, sortType])
+  
+      // sorted by sortType
+  useEffect(() => {
+    if(filteredProducts.length > 0 ){
+      let sortFilteredProducts = [...filteredProducts];
+      if (sortType === "asc") {
+        sortFilteredProducts.sort((a, b) => {
+          const priceA = a.discont_price || a.price;
+          const priceB = b.discont_price || b.price;
+          return priceA - priceB;
+        });
+
+      } else if (sortType === "desc") {
+        sortFilteredProducts.sort((a, b) => {
+          const priceA = a.discont_price || a.price;
+          const priceB = b.discont_price || b.price;
+          return priceB - priceA;
+        });
+
+      }
+      setFilteredProducts(sortFilteredProducts);
+
+    } else {
+      let sortFilteredProducts = [...products];
+      if (sortType === "asc") {
+        sortFilteredProducts.sort((a, b) => {
+          const priceA = a.discont_price || a.price;
+          const priceB = b.discont_price || b.price;
+          return priceA - priceB;
+        });
+      } else if (sortType === "desc") {
+        sortFilteredProducts.sort((a, b) => {
+          const priceA = a.discont_price || a.price;
+          const priceB = b.discont_price || b.price;
+          return priceB - priceA;
+        });
+      }
+      setFilteredProducts(sortFilteredProducts);
+    }
+  }, [sortType]);
     
-    const productsWithSale = newProducts.filter(product => product.discont_price !== null);
+  let productsWithSale 
+  if(filteredProducts.length > 0){
+    productsWithSale = filteredProducts.filter(product => product.discont_price !== null);
+  } else {
+    productsWithSale = products.filter(product => product.discont_price !== null);
+  }
+    
 
   return (
     <div className="container category-container">

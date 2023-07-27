@@ -54,7 +54,7 @@ function Basket() {
 
             <OrderDetails/>
         </div>
-            <OrderSuccess/>
+            {/* <OrderSuccess/> */}
     </div>
   )
 }
