@@ -8,13 +8,14 @@ import AllCategories from "./Pages/AllCategories";
 import SingleCategory from "./Pages/SingleCategory";
 import SingleProduct from "./Pages/SingleProduct";
 import Basket from "./Pages/Basket";
-// import Breadcrumb from "./Components/Breadcrumbs/Breadcrumb";
+import NotFoundPage from "./Pages/NotFoundPage";
+import Breadcrumb from "./Components/Breadcrumbs/Breadcrumb";
 
 function App() {
   return (
     <Router>
     <Nav />
-    {/* <Breadcrumb /> */}
+    <Breadcrumb />
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/all-products" element={<AllProducts />} />
@@ -23,6 +24,7 @@ function App() {
       <Route path="/categories/:categoryId" element={<SingleCategory />}/>
       <Route path="/products/:productId" element={<SingleProduct />} />
       <Route path="/basket" element={<Basket />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
 
     <Contacts />
